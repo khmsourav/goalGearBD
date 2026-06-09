@@ -1,0 +1,96 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg2; }
+.inner   { @include container; }
+
+.titleWrap {
+  text-align: center;
+  margin-bottom: $s10;
+  &__eyebrow { @include section-eyebrow; justify-content: center; }
+  &__title   { @include section-title; text-align: center; }
+  &__sub     { font-size: $sm; color: $w40; margin-top: $s2; max-width: 28rem; margin-inline: auto; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $s6;
+  margin-bottom: $s8;
+  @include md { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  position: relative;
+  background: $card;
+  border: 1px solid $w05;
+  border-radius: $r-3xl;
+  padding: 1.75rem;
+
+  &--featured {
+    border-color: rgba(0,102,255,0.4);
+    box-shadow: 0 0 40px rgba(0,102,255,0.08);
+  }
+
+  &__popular {
+    position: absolute;
+    top: -0.875rem;
+    left: 50%; transform: translateX(-50%);
+    padding: 0.25rem 1rem;
+    background: $blue;
+    color: #fff;
+    font-size: $xs;
+    font-weight: 700;
+    border-radius: $r-full;
+    white-space: nowrap;
+  }
+
+  &__icon {
+    width: 3rem; height: 3rem;
+    border-radius: $r-xl;
+    @include flex-center;
+    margin-bottom: $s4;
+  }
+
+  &__name  { font-size: 1.25rem; font-weight: 900; color: #fff; margin-bottom: 0.25rem; }
+  &__pts   { font-size: $xs; color: $w30; margin-bottom: $s5; }
+
+  &__perks { list-style: none; margin-bottom: $s6; display: flex; flex-direction: column; gap: 0.625rem; }
+  &__perk  { display: flex; align-items: flex-start; gap: $s2; font-size: $sm; color: $w60; }
+  &__perkIcon { color: $blue; flex-shrink: 0; margin-top: 2px; }
+
+  &__btn {
+    display: block;
+    text-align: center;
+    padding: 0.625rem;
+    border-radius: $r-xl;
+    font-size: $sm;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s, background 0.2s;
+
+    &--primary {
+      background: linear-gradient(135deg, $blue, $blue-light);
+      color: #fff;
+      &:hover { opacity: 0.9; }
+    }
+    &--ghost {
+      background: $w05;
+      color: $w70;
+      &:hover { background: $w10; }
+    }
+  }
+}
+
+.banner {
+  background: linear-gradient(135deg, rgba(0,102,255,0.1), rgba(0,198,255,0.05));
+  border: 1px solid rgba(0,102,255,0.2);
+  border-radius: $r-2xl;
+  padding: $s6;
+  text-align: center;
+  font-size: $sm;
+  color: $w60;
+
+  strong { color: #fff; }
+  a { color: $blue; text-decoration: none; &:hover { text-decoration: underline; } }
+}

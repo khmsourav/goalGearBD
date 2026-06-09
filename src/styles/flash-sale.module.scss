@@ -1,0 +1,194 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg; }
+.inner   { @include container; }
+
+.wrap {
+  position: relative;
+  background: linear-gradient(135deg, #1a0008 0%, $bg 100%);
+  border: 1px solid rgba(255,23,68,0.2);
+  border-radius: $r-3xl;
+  padding: $s8;
+  overflow: hidden;
+}
+
+.glowBg {
+  position: absolute;
+  top: 0; right: 0;
+  width: 24rem; height: 24rem;
+  background: radial-gradient(circle, rgba(255,23,68,0.1), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.topRow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $s6;
+  margin-bottom: $s8;
+
+  @include md {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.titleWrap {}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: $s2;
+  margin-bottom: $s3;
+
+  &__icon {
+    width: 2rem; height: 2rem;
+    background: $red;
+    border-radius: $r-lg;
+    @include flex-center;
+  }
+  &__text  { font-weight: 900; font-size: 1.1rem; color: $red; text-transform: uppercase; letter-spacing: 0.05em; }
+  &__live  {
+    padding: 0.2rem 0.6rem;
+    background: $r20;
+    border: 1px solid rgba(255,23,68,0.4);
+    color: $red;
+    border-radius: $r-full;
+    font-size: 0.6rem;
+    font-weight: 700;
+    animation: pulseRed 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.headline {
+  font-size: $x4;
+  font-weight: 900;
+  color: #fff;
+  @include md { font-size: clamp(1.875rem, 3vw, 2.5rem); }
+
+  span {
+    background: linear-gradient(135deg, $red, $orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: $s3;
+
+  &__label { font-size: $sm; color: $w40; }
+  &__units { display: flex; align-items: center; gap: $s2; }
+  &__sep   { font-size: 1.25rem; font-weight: 900; color: $red; padding-bottom: 1rem; }
+}
+
+.timeUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__val {
+    width: 3rem; height: 3rem;
+    background: $red;
+    border-radius: $r-lg;
+    @include flex-center;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+  }
+  &__lbl { font-size: 0.6rem; color: $w40; margin-top: 0.25rem; text-transform: uppercase; }
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $s4;
+  @include md { grid-template-columns: repeat(4, 1fr); }
+}
+
+.card {
+  background: $card;
+  border: 1px solid $w05;
+  border-radius: $r-2xl;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color 0.3s, transform 0.3s;
+  display: block;
+
+  &:hover { border-color: rgba(255,23,68,0.4); transform: translateY(-3px); }
+
+  &__imgWrap {
+    position: relative;
+    aspect-ratio: 1;
+    background: #0d0d18;
+    overflow: hidden;
+    img { object-fit: cover; transition: transform 0.5s; }
+  }
+  &:hover &__imgWrap img { transform: scale(1.06); }
+
+  &__discBadge {
+    position: absolute;
+    top: $s2; left: $s2;
+    background: $red;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: $r-full;
+  }
+  &__body  { padding: $s3; }
+  &__name  { font-size: $xs; color: $w60; font-weight: 500; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: $s2; }
+  &__prices{ display: flex; align-items: baseline; gap: $s2; margin-bottom: $s2; }
+  &__flash { font-size: $base; font-weight: 900; color: $red; }
+  &__orig  { font-size: $xs; color: $w30; text-decoration: line-through; }
+  &__stockLabel { display: flex; justify-content: space-between; font-size: 0.6rem; color: $w30; margin-bottom: 0.25rem; }
+  &__bar   { height: 0.375rem; background: $w10; border-radius: $r-full; overflow: hidden; margin-bottom: $s3; }
+  &__barFill { height: 100%; background: linear-gradient(90deg, $red, $orange); border-radius: $r-full; }
+  &__btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: $r10;
+    border: 1px solid rgba(255,23,68,0.3);
+    border-radius: $r-lg;
+    color: $red;
+    font-size: $xs;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    transition: background 0.2s, color 0.2s;
+    &:hover { background: $red; color: #fff; }
+  }
+}
+
+.footer {
+  position: relative;
+  margin-top: $s6;
+  text-align: center;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $s2;
+    font-size: $sm;
+    color: $red;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    &:hover { color: #fff; }
+  }
+}

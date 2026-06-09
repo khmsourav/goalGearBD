@@ -1,0 +1,65 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg; }
+.inner   { @include container; }
+
+.titleWrap {
+  text-align: center;
+  margin-bottom: $s10;
+  &__eyebrow { @include section-eyebrow; justify-content: center; }
+  &__title   { @include section-title; text-align: center; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $s6;
+  @include md { grid-template-columns: repeat(2, 1fr); }
+}
+
+.card {
+  background: linear-gradient(135deg, $card 0%, $bg2 100%);
+  border: 1px solid $w05;
+  border-radius: $r-3xl;
+  padding: $s8;
+  transition: border-color 0.3s;
+  &:hover { border-color: rgba(0,102,255,0.3); }
+
+  &__top    { display: flex; align-items: flex-start; gap: $s5; }
+  &__avatar {
+    width: 5rem; height: 5rem;
+    border-radius: $r-2xl;
+    background: linear-gradient(135deg, rgba(0,102,255,0.3), rgba(0,198,255,0.1));
+    @include flex-center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $blue;
+    flex-shrink: 0;
+  }
+  &__info   { flex: 1; }
+  &__name   { font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 0.2rem; }
+  &__sport  { font-size: $sm; color: $blue; font-weight: 600; margin-bottom: 0.2rem; }
+  &__product{ font-size: $xs; color: $w30; margin-bottom: $s4; }
+  &__quote  {
+    position: relative;
+    font-size: $sm;
+    color: $w70;
+    line-height: 1.7;
+    font-style: italic;
+    svg { color: rgba(0,102,255,0.3); display: block; margin-bottom: $s2; }
+  }
+  &__footer {
+    margin-top: $s5;
+    padding-top: $s5;
+    border-top: 1px solid $w05;
+  }
+  &__shopLink {
+    font-size: $xs;
+    color: $blue;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+    &:hover { color: #fff; }
+  }
+}

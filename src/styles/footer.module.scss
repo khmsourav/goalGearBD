@@ -1,0 +1,72 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer { background: $bg3; border-top: 1px solid $w05; }
+
+.features {
+  border-bottom: 1px solid $w05;
+  padding: $s8 0;
+
+  &__grid {
+    @include container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $s6;
+    @include md { grid-template-columns: repeat(4, 1fr); }
+  }
+  &__item  { display: flex; align-items: center; gap: $s3; }
+  &__icon  { width: 2.5rem; height: 2.5rem; background: $b15; border-radius: $r-xl; @include flex-center; flex-shrink: 0; color: $blue; }
+  &__label { font-size: $sm; font-weight: 600; color: #fff; }
+  &__sub   { font-size: $xs; color: $w40; }
+}
+
+.main {
+  @include container;
+  padding-top: $s12;
+  padding-bottom: $s12;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $s8;
+  @include md { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+}
+
+.brand {
+  &__logo        { display: flex; align-items: center; gap: $s2; margin-bottom: $s4; text-decoration: none; }
+  &__icon        { width: 2.5rem; height: 2.5rem; background: linear-gradient(135deg, $blue, $blue-light); border-radius: $r-xl; @include flex-center; font-weight: 900; color: #fff; font-size: 1.1rem; flex-shrink: 0; }
+  &__icon_image  { width: 2.5rem; height: 2.5rem; display: block; object-fit: contain; flex-shrink: 0; border-radius: $r-xl; }
+  &__name        { font-size: 1.25rem; font-weight: 900; color: #fff; line-height: 1; }
+  &__sub         { font-size: 0.6rem; color: $blue; font-weight: 700; letter-spacing: 0.15em; }
+  &__desc        { font-size: $sm; color: $w50; line-height: 1.7; margin-bottom: $s5; }
+  &__contact     { display: flex; flex-direction: column; gap: $s2; margin-bottom: $s5; }
+  &__contactItem { display: flex; align-items: center; gap: $s2; font-size: $sm; color: $w50; svg { color: $blue; flex-shrink: 0; } }
+  &__social      { display: flex; align-items: center; gap: $s3; }
+  &__socialLink  {
+    width: 2.25rem; height: 2.25rem; background: $w05; border-radius: $r-lg;
+    @include flex-center; color: $w60; text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    &:hover { background: $blue; color: #fff; }
+  }
+}
+
+.col {
+  &__title { font-size: $sm; font-weight: 700; color: #fff; margin-bottom: $s4; }
+  &__list  { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  &__link  { font-size: $sm; color: $w50; text-decoration: none; transition: color 0.2s; &:hover { color: #fff; } }
+}
+
+.bottom {
+  border-top: 1px solid $w05;
+  padding: $s5 0;
+
+  &__inner {
+    @include container;
+    display: flex; flex-direction: column;
+    align-items: center; gap: $s4; text-align: center;
+    @include md { flex-direction: row; justify-content: space-between; text-align: left; }
+  }
+  &__copy     { font-size: $xs; color: $w30; }
+  &__pay      { display: flex; align-items: center; gap: $s2; flex-wrap: wrap; justify-content: center; }
+  &__payLabel { font-size: $xs; color: $w30; margin-right: $s1; }
+  &__method   { padding: 0.25rem 0.6rem; background: $w05; border: 1px solid $w10; border-radius: $r-sm; font-size: $xs; color: $w60; font-weight: 500; }
+  &__powered  { display: flex; align-items: center; gap: 0.35rem; font-size: $xs; color: $w30; svg { color: $blue; } }
+}

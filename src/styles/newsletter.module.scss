@@ -1,0 +1,101 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg; }
+.inner   { @include container; }
+
+.wrap {
+  position: relative;
+  max-width: 48rem;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(0,102,255,0.18) 0%, rgba(0,198,255,0.05) 100%);
+  border: 1px solid rgba(0,102,255,0.2);
+  border-radius: $r-3xl;
+  padding: $s10;
+  text-align: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,102,255,0.08), transparent);
+    pointer-events: none;
+  }
+}
+
+.content { position: relative; }
+
+.iconWrap {
+  width: 3.5rem; height: 3.5rem;
+  background: rgba(0,102,255,0.2);
+  border-radius: $r-2xl;
+  @include flex-center;
+  margin: 0 auto $s5;
+  color: $blue;
+}
+
+.title {
+  font-size: $x3;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: $s3;
+  @include md { font-size: $x4; }
+
+  span {
+    background: linear-gradient(135deg, $blue, $blue-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.subtitle {
+  font-size: $sm;
+  color: $w50;
+  max-width: 28rem;
+  margin: 0 auto $s8;
+  line-height: 1.6;
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $s3;
+  color: $green;
+  font-weight: 600;
+  font-size: $base;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $s3;
+  max-width: 28rem;
+  margin: 0 auto;
+  @include sm { flex-direction: row; }
+
+  &__input {
+    flex: 1;
+    background: $w05;
+    border: 1px solid $w10;
+    border-radius: $r-xl;
+    padding: 0.75rem $s4;
+    font-size: $sm;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    &::placeholder { color: $w30; }
+    &:focus { border-color: $blue; }
+  }
+
+  &__btn {
+    @include btn-primary;
+    padding: 0.75rem 1.5rem;
+    white-space: nowrap;
+    font-size: $sm;
+  }
+}
+
+.note { font-size: $xs; color: $w20; margin-top: $s4; }

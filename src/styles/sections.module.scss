@@ -1,0 +1,43 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section {
+  padding: $s16 0;
+
+  &--dark  { background: $bg;  }
+  &--dark2 { background: $bg2; }
+}
+
+.inner { @include container; }
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: $s10;
+}
+
+.titleGroup {
+  &__eyebrow { @include section-eyebrow; }
+  &__title   { @include section-title; }
+}
+
+.viewAll {
+  display: none;
+  @include md { display: flex; }
+  align-items: center;
+  gap: $s2;
+  font-size: $sm;
+  color: $w50;
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover { color: #fff; }
+}
+
+.grid {
+  display: grid;
+  gap: $s4;
+  grid-template-columns: repeat(2, 1fr);
+  @include md { grid-template-columns: repeat(3, 1fr); }
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}

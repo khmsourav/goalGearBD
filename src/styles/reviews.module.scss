@@ -1,0 +1,59 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg2; }
+.inner   { @include container; }
+
+.titleWrap {
+  text-align: center;
+  margin-bottom: $s10;
+  &__eyebrow  { @include section-eyebrow; justify-content: center; }
+  &__title    { @include section-title; text-align: center; }
+  &__rating   { display: flex; align-items: center; justify-content: center; gap: $s2; margin-top: $s3; }
+  &__ratingVal{ font-weight: 700; color: #fff; font-size: $base; }
+  &__ratingCnt{ font-size: $sm; color: $w40; }
+}
+
+.stars { display: flex; align-items: center; gap: 0.2rem; }
+.star  { color: #fbbf24; }
+
+.grid {
+  display: grid;
+  gap: $s4;
+  grid-template-columns: 1fr;
+  @include md { grid-template-columns: repeat(2, 1fr); }
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.card {
+  background: $card;
+  border: 1px solid $w05;
+  border-radius: $r-2xl;
+  padding: $s5;
+  transition: border-color 0.3s;
+  &:hover { border-color: rgba(0,102,255,0.3); }
+
+  &__top     { display: flex; align-items: center; justify-content: space-between; margin-bottom: $s3; }
+  &__user    { display: flex; align-items: center; gap: $s3; }
+  &__avatar  {
+    width: 2.5rem; height: 2.5rem;
+    background: linear-gradient(135deg, $blue, $blue-light);
+    border-radius: $r-full;
+    @include flex-center;
+    font-size: $sm;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  &__name    { font-size: $sm; font-weight: 600; color: #fff; }
+  &__date    { font-size: $xs; color: $w30; }
+  &__verify  { color: $blue; flex-shrink: 0; }
+  &__comment { font-size: $sm; color: $w60; line-height: 1.6; margin-bottom: $s3; }
+  &__product {
+    font-size: $xs;
+    color: $w30;
+    border-top: 1px solid $w05;
+    padding-top: $s3;
+    span { color: $w50; }
+  }
+}

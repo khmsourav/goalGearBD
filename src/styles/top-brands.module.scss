@@ -1,0 +1,48 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg2; }
+.inner   { @include container; }
+
+.titleWrap {
+  text-align: center;
+  margin-bottom: $s10;
+
+  &__eyebrow { @include section-eyebrow; justify-content: center; }
+  &__title   { @include section-title; text-align: center; }
+  &__sub     { color: $w40; font-size: $sm; margin-top: $s2; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $s4;
+  @include md { grid-template-columns: repeat(8, 1fr); }
+}
+
+.card {
+  background: $card;
+  border: 1px solid $w05;
+  border-radius: $r-xl;
+  aspect-ratio: 1;
+  text-decoration: none;
+  @include flex-center;
+  transition: border-color 0.3s, transform 0.3s;
+
+  &:hover { border-color: rgba(0,102,255,0.3); transform: translateY(-3px); }
+
+  &__inner { text-align: center; }
+  &__icon  {
+    width: 2.5rem; height: 2.5rem;
+    margin: 0 auto $s2;
+    border-radius: $r-lg;
+    @include flex-center;
+    font-size: $xs;
+    font-weight: 900;
+    color: #fff;
+    transition: transform 0.3s;
+  }
+  &:hover &__icon { transform: scale(1.1); }
+  &__name { font-size: 0.6rem; font-weight: 700; color: $w50; transition: color 0.2s; }
+  &:hover &__name { color: #fff; }
+}

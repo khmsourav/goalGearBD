@@ -1,0 +1,240 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+/* ── Top bar ────────────────────────────────────────────────────── */
+.topBar {
+  background: $blue;
+  color: #fff;
+  font-size: $xs;
+  padding: 0.4rem 0;
+  display: none;
+  @include md { display: block; }
+
+  &__inner  { @include container; @include flex-between; }
+  &__left, &__right { display: flex; align-items: center; gap: $s4; }
+  &__phone  { display: flex; align-items: center; gap: 0.35rem; }
+  &__flash  { display: flex; align-items: center; gap: 0.35rem; font-weight: 700; }
+  &__sep    { opacity: 0.5; }
+  &__link   { transition: opacity 0.2s; &:hover { opacity: 0.8; text-decoration: underline; } }
+}
+
+/* ── Main header ─────────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(13,13,26,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid $w05;
+
+  &__inner { @include container; }
+  &__row   { display: flex; align-items: center; height: 4rem; gap: $s4; }
+}
+
+/* ── Logo ────────────────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: $s2;
+  flex-shrink: 0;
+  text-decoration: none;
+
+  &__icon {
+    width: 2.25rem; height: 2.25rem;
+    background: linear-gradient(135deg, $blue, $blue-light);
+    border-radius: $r-lg;
+    @include flex-center;
+    font-weight: 900;
+    color: #fff;
+    font-size: $sm;
+    flex-shrink: 0;
+  }
+  &__image {
+    width: 2.25rem; height: 2.25rem;
+    flex-shrink: 0;
+    display: block;
+    object-fit: contain;
+    border-radius: $r-lg;
+  }
+  &__text { display: none; @include sm { display: block; } }
+  &__name { font-size: 1.1rem; font-weight: 900; color: #fff; line-height: 1; }
+  &__sub  { font-size: 0.6rem; color: $blue; font-weight: 700; letter-spacing: 0.15em; line-height: 1; }
+}
+
+/* ── Search ──────────────────────────────────────────────────────── */
+.search {
+  flex: 1;
+  max-width: 36rem;
+  display: none;
+  @include md { display: block; }
+
+  &__wrap  { position: relative; }
+  &__input {
+    width: 100%;
+    background: $w05;
+    border: 1px solid $w10;
+    border-radius: $r-xl;
+    padding: 0.6rem 3rem 0.6rem $s4;
+    font-size: $sm; color: #fff; outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    &::placeholder { color: $w30; }
+    &:focus { border-color: $blue; background: $w08; }
+  }
+  &__btn {
+    position: absolute;
+    right: 0; top: 0;
+    height: 100%; padding: 0 $s4;
+    background: $blue; border: none;
+    border-radius: 0 $r-xl $r-xl 0;
+    color: #fff; cursor: pointer;
+    @include flex-center;
+    transition: background 0.2s;
+    &:hover { background: $blue-hover; }
+  }
+}
+
+/* ── Actions ─────────────────────────────────────────────────────── */
+.actions { display: flex; align-items: center; gap: 0.125rem; margin-left: auto; }
+
+.iconBtn {
+  position: relative;
+  padding: $s2; color: $w70;
+  background: none; border: none;
+  cursor: pointer;
+  @include flex-center;
+  border-radius: $r-lg;
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover { color: #fff; }
+
+  &__badge {
+    position: absolute;
+    top: -2px; right: -2px;
+    width: 1rem; height: 1rem;
+    border-radius: $r-full;
+    font-size: 0.6rem; font-weight: 700;
+    @include flex-center;
+    color: #fff;
+    &--blue { background: $blue; }
+    &--red  { background: $red; }
+  }
+}
+
+.loginBtn {
+  display: none;
+  @include sm { display: flex; }
+  align-items: center; gap: $s2;
+  margin-left: $s1;
+  padding: 0.35rem 0.7rem;
+  background: $w05; border: none;
+  border-radius: $r-lg;
+  color: $w80; font-size: $sm;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+  &:hover { background: $w10; }
+}
+
+.menuBtn {
+  display: flex;
+  @include md { display: none; }
+  padding: $s2; background: none; border: none;
+  color: $w70; cursor: pointer; margin-left: $s1;
+  &:hover { color: #fff; }
+}
+
+/* ── Desktop nav ─────────────────────────────────────────────────── */
+.nav {
+  display: none;
+  @include md { display: flex; }
+  align-items: center;
+  border-top: 1px solid $w05;
+
+  &__extra    { margin-left: auto; display: flex; align-items: center; gap: $s3; padding: $s2 0; }
+  &__teamBtn {
+    font-size: $xs; padding: 0.35rem 0.7rem;
+    border: 1px solid rgba(0,102,255,0.4);
+    color: $blue; border-radius: $r-full;
+    background: none; cursor: pointer; text-decoration: none;
+    transition: background 0.2s;
+    &:hover { background: $b10; }
+  }
+  &__jerseyBtn {
+    font-size: $xs; padding: 0.35rem 0.7rem;
+    background: linear-gradient(135deg, $blue, $blue-light);
+    color: #fff; border-radius: $r-full;
+    text-decoration: none; font-weight: 600;
+    transition: opacity 0.2s;
+    &:hover { opacity: 0.9; }
+  }
+}
+
+.navItem {
+  position: relative;
+
+  &__link {
+    display: flex; align-items: center; gap: 0.25rem;
+    padding: 0.75rem $s4;
+    font-size: $sm; font-weight: 500; color: $w70;
+    text-decoration: none; background: none; border: none;
+    cursor: pointer; white-space: nowrap;
+    transition: color 0.2s;
+    &:hover { color: #fff; }
+    &--red  { color: $red; &:hover { color: $red-hover; } }
+  }
+  &__chevron { transition: transform 0.2s; &--open { transform: rotate(180deg); } }
+  &__dropdown {
+    position: absolute;
+    top: 100%; left: 0;
+    background: #111120;
+    border: 1px solid $w10;
+    border-radius: $r-xl;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    padding: $s2 0; min-width: 12rem; z-index: 100;
+  }
+  &__dropLink {
+    display: block; padding: 0.6rem $s4;
+    font-size: $sm; color: $w70; text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+    &:hover { color: #fff; background: $w05; }
+  }
+}
+
+/* ── Mobile menu ─────────────────────────────────────────────────── */
+.mobile {
+  display: block;
+  @include md { display: none; }
+  background: $bg2; border-top: 1px solid $w05; padding: $s4;
+
+  &__searchWrap { position: relative; margin-bottom: $s4; }
+  &__input {
+    width: 100%; background: $w05; border: 1px solid $w10;
+    border-radius: $r-xl; padding: 0.6rem 3rem 0.6rem $s4;
+    font-size: $sm; color: #fff; outline: none;
+    &::placeholder { color: $w30; }
+    &:focus { border-color: $blue; }
+  }
+  &__searchBtn {
+    position: absolute; right: 0; top: 0;
+    height: 100%; padding: 0 $s4;
+    background: $blue; border: none;
+    border-radius: 0 $r-xl $r-xl 0; color: #fff; cursor: pointer;
+    @include flex-center;
+  }
+  &__links { display: flex; flex-direction: column; gap: 0.25rem; }
+  &__link {
+    display: block; padding: 0.6rem $s3;
+    border-radius: $r-lg; font-size: $sm; font-weight: 500;
+    color: $w80; text-decoration: none;
+    transition: background 0.2s;
+    &:hover { background: $w05; }
+    &--red  { color: $red; }
+  }
+  &__sub { padding-left: $s4; margin-top: 0.25rem; display: flex; flex-direction: column; gap: 0.25rem; }
+  &__subLink {
+    display: block; padding: $s2 $s3;
+    font-size: $xs; color: $w50; text-decoration: none;
+    transition: color 0.2s;
+    &:hover { color: $w80; }
+  }
+}

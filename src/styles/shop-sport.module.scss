@@ -1,0 +1,75 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section { padding: $s16 0; background: $bg; }
+.inner   { @include container; }
+
+.header  { @include flex-between; margin-bottom: $s10; }
+
+.titleGroup {
+  &__eyebrow { @include section-eyebrow; }
+  &__title   { @include section-title; }
+}
+
+.viewAll {
+  display: none;
+  @include md { display: flex; }
+  align-items: center;
+  gap: $s2;
+  font-size: $sm; color: $w50; text-decoration: none;
+  transition: color 0.2s;
+  &:hover { color: #fff; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $s3;
+  @include sm { grid-template-columns: repeat(3, 1fr); }
+  @include md { grid-template-columns: repeat(4, 1fr); }
+  @include lg { grid-template-columns: repeat(8, 1fr); }
+}
+
+.card {
+  position: relative;
+  background: $card;
+  border: 1px solid $w05;
+  border-radius: $r-2xl;
+  padding: $s4;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+
+  &:hover { border-color: rgba(0,102,255,0.35); transform: translateY(-4px); }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: $r-2xl;
+    pointer-events: none;
+  }
+  &:hover &__overlay { opacity: 0.1; }
+
+  &__icon  { font-size: 2.5rem; margin-bottom: $s3; display: block; transition: transform 0.3s; }
+  &:hover &__icon { transform: scale(1.12); }
+
+  &__name  { font-size: $xs; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+  &__count { font-size: 0.6rem; color: $w30; }
+}
+
+.mobileViewAll {
+  display: flex;
+  @include md { display: none; }
+  align-items: center;
+  justify-content: center;
+  gap: $s2;
+  margin-top: $s6;
+  font-size: $sm;
+  font-weight: 600;
+  color: $blue;
+  text-decoration: none;
+}
